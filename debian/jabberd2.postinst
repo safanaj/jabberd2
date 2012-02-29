@@ -1,0 +1,28 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    configure)
+        chown jabber:jabber /etc/jabberd2
+        chmod 750 /etc/jabberd2
+        chown jabber:jabber /var/lib/jabberd2
+        chmod 750 /var/lib/jabberd2
+        chown jabber:jabber /var/log/jabberd2
+        chmod 750 /var/log/jabberd2
+        chown jabber:jabber /var/run/jabberd2
+        chmod 755 /var/run/jabberd2
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

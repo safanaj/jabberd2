@@ -1,0 +1,6 @@
+pkgname.patch
+etc_pidpath.patch
+etc_logpath.patch
+etc_dbpath.patch
+implicit-pointer-conversion.patch
+CVE-2011-1755.patch

@@ -1,0 +1,46 @@
+Author: Jorge Salamero Sanz <bencer@cauterized.net>
+Description: changes in etc files the path of logs
+--- jabberd2.orig/etc/c2s.xml.dist.in
++++ jabberd2/etc/c2s.xml.dist.in
+@@ -5,7 +5,7 @@
+ 
+   <!-- The process ID file. Comment this out if you don't need to know
+        the process ID from outside the process (eg for control scripts) -->
+-  <pidfile>@localstatedir@/jabberd/pid/c2s.pid</pidfile>
++  <pidfile>@localstatedir@/run/jabberd2/c2s.pid</pidfile>
+ 
+   <!-- Router connection configuration -->
+   <router>
+--- jabberd2.orig/etc/router.xml.dist.in
++++ jabberd2/etc/router.xml.dist.in
+@@ -5,7 +5,7 @@
+ 
+   <!-- The process ID file. Comment this out if you don't need to know
+        the process ID from outside the process (eg for control scripts) -->
+-  <pidfile>@localstatedir@/jabberd/pid/router.pid</pidfile>
++  <pidfile>@localstatedir@/run/jabberd2/router.pid</pidfile>
+ 
+   <!-- Log configuration - type is "syslog", "file" or "stdout" -->
+   <log type='syslog'>
+--- jabberd2.orig/etc/s2s.xml.dist.in
++++ jabberd2/etc/s2s.xml.dist.in
+@@ -5,7 +5,7 @@
+ 
+   <!-- The process ID file. Comment this out if you don't need to know
+        the process ID from outside the process (eg for control scripts) -->
+-  <pidfile>@localstatedir@/jabberd/pid/s2s.pid</pidfile>
++  <pidfile>@localstatedir@/run/jabberd2/s2s.pid</pidfile>
+ 
+   <!-- Router connection configuration -->
+   <router>
+--- jabberd2.orig/etc/sm.xml.dist.in
++++ jabberd2/etc/sm.xml.dist.in
+@@ -5,7 +5,7 @@
+ 
+   <!-- The process ID file. Comment this out if you don't need to know
+        the process ID from outside the process (eg for control scripts) -->
+-  <pidfile>@localstatedir@/jabberd/pid/sm.pid</pidfile>
++  <pidfile>@localstatedir@/run/jabberd2/sm.pid</pidfile>
+ 
+   <!-- Router connection configuration -->
+   <router>
