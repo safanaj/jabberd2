@@ -1,0 +1,42 @@
+jabberd2 (2.2.8-2) unstable; urgency=low
+
+  Keep in mind that from jabberd2 2.1 series packages, the BerkeleyDB and
+  SQLite databases are in /var/lib/jabberd2 instead of /var/lib/jabberd2/db/.
+  I've just realized this, so if you are upgrading from jabberd2-ldap-bdb or
+  jabberd2-bdb move the .db files to the proper path.
+
+ -- Jorge Salamero Sanz <bencer@debian.org>  Mon, 04 May 2009 11:25:03 +0100
+
+jabberd2 (2.1.24.1-1) unstable; urgency=low
+
+  Major issues appear upgrading from 2.0 series to this one, see UPGRADE.
+
+  /etc/jabberd2/component.d/ is intended for startup scripts for the various
+  transports but work is still needed on transports packages.
+
+ -- Jorge Salamero Sanz <bencer@debian.org>  Fri, 02 May 2008 19:27:21 +0200
+
+jabberd2 (2.0s4-1) experimental; urgency=low
+
+  Users upgrading from a previous version of jabberd2-bdb (anything that
+  used an older version of libdb) will need to manually recover their
+  Berkeley databases.  This appears to be due to a problem with how
+  Jabberd2 interacts with it's Berkeley database.  The database seems to
+  be left in an unclean state when Jabberd2 shuts down.  This isn't a
+  problem for normal operation, but when the version of the Berkeley
+  database libraries changes the database isn't able to be automatically
+  upgraded.
+
+  You'll need the db4.1-util (assuming 4.1 was your previous version
+  of libdb) package installed.  Assumming you used the default database
+  storage location the following commands should be all that are needed
+  (you'll want to make sure to stop Jabberd2 first):
+
+      cd /var/lib/jabberd2/db
+      db4.1_recover
+
+  Now you should be able to start Jabberd2.  I apologize for this
+  inconvenience and hope to have this corrected soon.
+
+ -- Jamin W. Collins <jcollins@asgardsrealm.net>  Sat,  6 Nov 2004 14:59:13 -0700
+ 

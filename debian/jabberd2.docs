@@ -1,0 +1,6 @@
+NEWS
+README
+README.protocol
+TODO
+UPGRADE
+tools/*.{sqlite,mysql,pgsql,oracle,sql,pl}

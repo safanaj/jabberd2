@@ -1,0 +1,6 @@
+etc/jabberd2/component.d
+etc/jabberd2/sm.d
+usr/sbin
+var/log/jabberd2
+var/run/jabberd2
+var/lib/jabberd2

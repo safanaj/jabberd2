@@ -1,0 +1,44 @@
+#!/bin/sh
+
+set -e
+
+test -f /etc/default/jabberd2 && . /etc/default/jabberd2
+
+NAME=c2s
+COMMAND=/usr/sbin/jabberd2-${NAME}
+PIDFILE=/var/run/jabberd2/${NAME}.pid
+CONFFILE=/etc/jabberd2/${NAME}.xml
+
+# exit now if we are not ment to run
+test "${C2S_RUN}" != 0 || exit 0
+
+# check for executable
+test -f ${COMMAND} || exit 0
+
+case "$1" in
+   start)
+	   echo -n " ${NAME}"
+      if [ ! `pidof ${COMMAND}` ]; then
+      	start-stop-daemon -b -c ${USER}:${GROUP} \
+            --start --pidfile ${PIDFILE} --quiet \
+            --exec ${COMMAND} -- -c ${CONFFILE} || echo -n "<Failed>"
+      fi
+	;;
+   stop)
+	   echo -n " ${NAME}"
+      start-stop-daemon -o -u ${USER} --stop --quiet \
+         --signal 15 --retry 3 --pidfile ${PIDFILE} \
+         --exec ${COMMAND} || echo -n "<Failed>"
+	;;
+   restart)
+      $0 stop
+      sleep 1
+      $0 start
+   ;;
+   *)
+      echo "`basename $0` called with unknown option {$1}"
+      exit 1
+   ;;
+esac
+
+exit 0

@@ -1,0 +1,48 @@
+This package was debianized by Jorge Salamero Sanz <bencer@debian.org> on
+Fri, 13 Jul 2007 17:32:28 +0000.
+
+Jamin W. Collins <jcollins@asgardsrealm.net> was the previous maintainer.
+
+It was downloaded from http://jabberd2.xiaoka.com/
+
+Upstream Authors: 
+
+    Ryan Eatmon <reatmon@jabber.org>
+    Jeremie Miller <jeremie@jabber.org>
+    Thomas Muldowney <temas@jabber.org>
+    Robert Norris <rob@cataclysm.cx>
+    Stephen Marquard <xmpp:scm@jabber.org>
+    Tomasz Sterna <xmpp:smoku@xiaoka.com>
+    and others, see AUTHORS
+
+Copyright: 
+
+    Copyright (C) 2002-2004 Ryan Eatmon <reatmon@jabber.org>
+    Copyright (C) 2002-2004 Jeremie Miller <jeremie@jabber.org>
+    Copyright (C) 2002-2004 Thomas Muldowney <temas@jabber.org>
+    Copyright (C) 2002-2004 Robert Norris <rob@cataclysm.cx>
+
+License:
+
+   This package is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; version 2 dated June, 1991.
+
+   This package is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this package; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+
+   As a special exception, the authors give permission to link this program
+   with the OpenSSL library and distribute the resulting binary.
+
+On Debian systems, the complete text of the GNU General Public License
+can be found in the file `/usr/share/common-licenses/GPL-2'.
+
+The Debian packaging is (C) 2007, Jorge Salamero Sanz <bencer@debian.org>
+and is licensed under the GPL, see `/usr/share/common-licenses/GPL-3'.

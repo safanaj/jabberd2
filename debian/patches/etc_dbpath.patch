@@ -1,0 +1,37 @@
+Author: Jorge Salamero Sanz <bencer@cauterized.net>
+Description: changes in etc files the path of databases
+Index: jabberd2/etc/c2s.xml.dist.in
+===================================================================
+--- jabberd2.orig/etc/c2s.xml.dist.in
++++ jabberd2/etc/c2s.xml.dist.in
+@@ -414,7 +414,7 @@
+     <!-- SQLite driver configuration -->
+     <sqlite>
+       <!-- Database name -->
+-      <dbname>@localstatedir@/jabberd/db/sqlite.db</dbname>
++      <dbname>@localstatedir@/lib/jabberd2/sqlite.db</dbname>
+ 
+       <!-- Transacation support. If this is commented out, transactions
+            will be disabled. This might make database accesses faster,
+@@ -495,7 +495,7 @@
+     <!-- Berkeley DB module configuration -->
+     <db>
+       <!-- Directory to store database files under -->
+-      <path>@localstatedir@/jabberd/db</path>
++      <path>@localstatedir@/lib/jabberd2/</path>
+ 
+       <!-- Synchronize the database to disk after each write. If you
+            disable this, database accesses may be faster, but data may
+Index: jabberd2/etc/sm.xml.dist.in
+===================================================================
+--- jabberd2.orig/etc/sm.xml.dist.in
++++ jabberd2/etc/sm.xml.dist.in
+@@ -194,7 +194,7 @@
+          implementation does not implement the 'count' callback). -->
+     <db>
+       <!-- Directory to store database files under -->
+-      <path>@localstatedir@/jabberd/db</path>
++      <path>@localstatedir@/lib/jabberd2/</path>
+ 
+       <!-- Synchronize the database to disk after each write. If you
+            disable this, database accesses may be faster, but data may

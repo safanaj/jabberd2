@@ -1,0 +1,91 @@
+#!/usr/bin/make -f
+export DH_VERBOSE=1
+DEB_BUILD_OPTIONS ?= debug noopt
+
+pn=$(shell dpkg-parsechangelog | grep ^Source | cut -d' ' -f2)
+ov=$(shell dpkg-parsechangelog | grep ^Version | cut -d' ' -f2 | cut -d'-' -f1)
+
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+    CFLAGS += -ggdb
+    CONFIGURE_EXTRA_FLAGS += --enable-debug
+endif
+
+DEB_HOST_ARCH_OS := $(shell dpkg-architecture -qDEB_HOST_ARCH_OS 2>/dev/null)
+ifeq ($(DEB_HOST_ARCH_OS), linux)
+	CONFIGURE_EXTRA_FLAGS += --enable-mio=epoll
+endif
+
+define do_configure
+	CFLAGS="$(CFLAGS)" dh_auto_configure -- -C --prefix=/usr \
+		--host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+		--sysconfdir=/etc/jabberd2 \
+	 	--bindir=\$${prefix}/sbin \
+	 	--localstatedir=/var \
+	 	--program-prefix=jabberd2- \
+	 	--disable-rpath \
+	 	--disable-ldap \
+	 	--enable-sasl=gsasl \
+	 	--enable-ssl \
+	 	--enable-mysql \
+	 	--enable-pgsql \
+	 	--enable-sqlite \
+	 	--enable-db \
+	 	--enable-pam \
+	 	--enable-pipe \
+	 	--enable-anon \
+	 	--enable-fs \
+	 	$(CONFIGURE_EXTRA_FLAGS)
+endef
+
+define do_getorig
+dh_testdir
+# TODO checks for parent commit and sha1 in changelog
+dpkg-parsechangelog | grep -q "GIT: $(shell git describe --always)" || \
+    printf "GIT: %s" $(shell git describe --always --abbrev=40) | xargs dch --maintmaint -i
+@echo "Controlla debian/changelog"
+mkdir -p $(pn)-$(ov)
+git archive --format=tar $(shell git describe --always) | tar -C $(pn)-$(ov) -xf -
+tar -cf - $(pn)-$(ov) | gzip -9c > ../$(pn)_$(ov).orig.tar.gz
+rm -rf $(pn)-$(ov)
+endef
+
+get-orig-source:
+	$(call do_getorig)
+
+buildpackage.dsc: get-orig-source
+	debuild -S -sa -us -uc
+
+override_dh_auto_clean:
+	test -e tests/Makefile && $(MAKE) -C tests distclean || true
+	dh_auto_clean
+
+override_dh_auto_configure:
+	test -x $(CURDIR)/configure || exit 1
+	$(call do_configure)
+	#test -x $(CURDIR)/config.status && CFLAGS="$(CFLAGS)" $(CURDIR)/config.status --recheck
+
+override_dh_auto_install:
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+	# install component.d scripts
+	install -o root -g root -m 0755 $(CURDIR)/debian/component.d/* $(CURDIR)/debian/jabberd2/etc/jabberd2/component.d
+	install -o root -g root -m 0755 -d $(CURDIR)/debian/jabberd2/usr/share/doc/jabberd2/examples
+
+override_dh_installchangelogs:
+	dh_installchangelogs ChangeLog
+
+###
+%:
+	dh --with autoreconf $@
+#	dh $@
+

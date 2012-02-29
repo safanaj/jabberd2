@@ -1,0 +1,8 @@
+jabberd2 (2.2dev-aderit0) unstable; urgency=low
+
+  * (NMU) New upstream release:
+    git commit: b9214a748be2ff6
+    origin: git://github.com/Jabberd2/jabberd2.git
+
+ -- Marco Bardelli <bardelli.marco@gmail.com>  Tue, 28 Feb 2012 23:37:04 +0100
+

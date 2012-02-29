@@ -1,0 +1,12 @@
+Author: Jorge Salamero Sanz <bencer@debian.org>
+Description: No description.
+--- jabberd2.orig/storage/authreg_mysql.c
++++ jabberd2/storage/authreg_mysql.c
+@@ -19,6 +19,7 @@
+  */
+ 
+ /* this module talks to a MySQL server via libmysqlclient */
++#define _XOPEN_SOURCE 1
+ 
+ #define _XOPEN_SOURCE 500
+ #include "c2s.h"

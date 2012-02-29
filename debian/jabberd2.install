@@ -1,0 +1,6 @@
+etc/jabberd2/*.xml
+etc/jabberd2/*.dist usr/share/doc/jabberd2/examples
+etc/jabberd2/templates/*.dist usr/share/doc/jabberd2/examples
+usr/{sbin,share}
+usr/lib/jabberd2/*.so
+usr/lib/jabberd2/*.so.*

@@ -1,0 +1,21 @@
+Source: jabberd2
+Section: net
+Priority: optional
+Maintainer: Debian XMPP Maintainers <pkg-xmpp-devel@lists.alioth.debian.org>
+Uploaders: Jorge Salamero Sanz <bencer@debian.org>, Thadeu Lima de Souza Cascardo <cascardo@minaslivre.org>
+Build-Depends: debhelper (>= 7.0.50~), quilt, dh-autoreconf, automake, libtool, libssl-dev, libgsasl7-dev (>= 0.2.27), libdb-dev, libpam0g-dev, libmysqlclient-dev, libpq-dev, libldap2-dev, libsqlite3-dev, libidn11-dev, libexpat1-dev, libudns-dev, libcppunit-dev
+Standards-Version: 3.8.1
+Homepage: http://jabberd2.xiaoka.com/
+
+Package: jabberd2
+Architecture: any
+Conflicts: jabberd2-bdb, jabberd2-mysql, jabberd2-pgsql, jabberd2-ldap-bdb, jabberd2-ldap-mysql, jabberd2-ldap-pgsql
+Replaces: jabberd2-bdb, jabberd2-mysql, jabberd2-pgsql, jabberd2-ldap-bdb, jabberd2-ldap-mysql, jabberd2-ldap-pgsql
+Depends: adduser, ${shlibs:Depends}
+Description: Jabber instant messenger server 
+ Jabber is a free instant messaging server based on XMPP.
+ .
+ This package contains Jabberd 2, the next generation of the Jabberd
+ server. It has been rewritten from the ground up to be scalable,
+ architecturally sound, and to support the latest protocol extensions
+ coming out of the XSF.

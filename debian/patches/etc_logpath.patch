@@ -1,0 +1,98 @@
+Author: Jorge Salamero Sanz <bencer@cauterized.net>
+Description: changes in etc files the path of logs
+--- jabberd2.orig/etc/c2s.xml.dist.in
++++ jabberd2/etc/c2s.xml.dist.in
+@@ -50,7 +50,7 @@
+   </router>
+ 
+   <!-- Log configuration - type is "syslog", "file" or "stdout" -->
+-  <log type='syslog'>
++  <log type='file'>
+     <!-- If logging to syslog, this is the log ident -->
+     <ident>jabberd/c2s</ident>
+ 
+@@ -59,9 +59,9 @@
+     <facility>local3</facility>
+ 
+     <!-- If logging to file, this is the filename of the logfile -->
+-    <!--
+-    <file>@localstatedir@/jabberd/log/c2s.log</file>
+-    -->
++
++    <file>@localstatedir@/log/jabberd2/c2s.log</file>
++
+   </log>
+ 
+   <!-- Local network configuration -->
+--- jabberd2.orig/etc/router.xml.dist.in
++++ jabberd2/etc/router.xml.dist.in
+@@ -8,7 +8,7 @@
+   <pidfile>@localstatedir@/run/jabberd2/router.pid</pidfile>
+ 
+   <!-- Log configuration - type is "syslog", "file" or "stdout" -->
+-  <log type='syslog'>
++  <log type='file'>
+     <!-- If logging to syslog, this is the log ident -->
+     <ident>jabberd/router</ident>
+ 
+@@ -17,9 +17,9 @@
+     <facility>local3</facility>
+ 
+     <!-- If logging to file, this is the filename of the logfile -->
+-    <!--
+-    <file>@localstatedir@/jabberd/log/router.log</file>
+-    -->
++
++    <file>@localstatedir@/log/jabberd2/router.log</file>
++
+   </log>
+ 
+   <!-- Local network configuration -->
+--- jabberd2.orig/etc/s2s.xml.dist.in
++++ jabberd2/etc/s2s.xml.dist.in
+@@ -60,7 +60,7 @@
+   </router>
+ 
+   <!-- Log configuration - type is "syslog", "file" or "stdout" -->
+-  <log type='syslog'>
++  <log type='file'>
+     <!-- If logging to syslog, this is the log ident -->
+     <ident>jabberd/s2s</ident>
+ 
+@@ -69,9 +69,9 @@
+     <facility>local3</facility>
+ 
+     <!-- if logging to file, this is the filename of the logfile -->
+-    <!--
+-    <file>@localstatedir@/jabberd/log/s2s.log</file>
+-    -->
++
++    <file>@localstatedir@/log/jabberd2/s2s.log</file>
++
+   </log>
+ 
+   <!-- Local network configuration -->
+--- jabberd2.orig/etc/sm.xml.dist.in
++++ jabberd2/etc/sm.xml.dist.in
+@@ -50,7 +50,7 @@
+   </router>
+ 
+   <!-- Log configuration - type is "syslog", "file" or "stdout" -->
+-  <log type='syslog'>
++  <log type='file'>
+     <!-- If logging to syslog, this is the log ident -->
+     <ident>jabberd/sm</ident>
+ 
+@@ -59,9 +59,9 @@
+     <facility>local3</facility>
+ 
+     <!-- If logging to file, this is the filename of the logfile -->
+-    <!--
+-    <file>@localstatedir@/jabberd/log/sm.log</file>
+-    -->
++
++    <file>@localstatedir@/log/jabberd2/sm.log</file>
++
+   </log>
+ 
+   <!-- Local network configuration -->
